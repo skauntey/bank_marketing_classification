@@ -29,4 +29,6 @@ For deployment I have create four files like app.py, columns.pkl, best_classifie
 
 10. go to the link generated such as http://localhost:8080
 
-11. you should be able to see something like ![screen_capture1](https://user-images.githubusercontent.com/56140128/151150010-1857ff1f-b737-450f-9f5c-540af07e9898.JPG)
+11. you should be able to see something like
+
+13.   ![screen_capture1](https://user-images.githubusercontent.com/56140128/151150010-1857ff1f-b737-450f-9f5c-540af07e9898.JPG)
