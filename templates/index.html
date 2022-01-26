@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}"> -->
+    <!-- <link rel= "stylesheet" type= "text/css" href= "../static/styles/mainpage.css"> -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Banking Churn Prediction</title>
+    <style type="text/css">
+				.button {
+		border-radius: 4px;
+		background-color: #e7e7e7;
+		border: none;
+		color: #111111;
+		text-align: center;
+		font-size: 16px;
+		padding: 10px;
+		width: 150px;
+		transition: all 0.5s;
+		cursor: pointer;
+		margin: 5px;
+		}
+
+		.button span {
+		cursor: pointer;
+		display: inline-block;
+		position: relative;
+		transition: 0.5s;
+		}
+
+		.button span:after {
+		content: '\00bb';
+		position: absolute;
+		opacity: 0;
+		top: 0;
+		right: -20px;
+		transition: 0.5s;
+		}
+
+		.button:hover span {
+		padding-right: 25px;
+		}
+
+		.button:hover span:after {
+		opacity: 1;
+		right: 0;
+		}
+    </style>
+</head>
+<body style="background-color: #6A359C; text-align: center">
+    <div style="  text-align: center;">
+      <h1 style="color: #FFF">Banking Churn Prediction</h1>
+    <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+		<form action= "/predict" method="POST">
+			<div style="margin: 25px;">
+				<table align = "center">
+						<br>
+						<br>
+					<tr>
+						<td>
+							<label for="age">Age:</label> 
+						</td>
+						<td>
+							<input type="text" id="age" name="age" class="form-control" style="margin: 3px" placeholder="type your age" >
+						</td> 
+					</tr>
+					<tr>
+						<td>
+							<label for="job">Type of job:</label> 
+						</td>
+						<td>
+							<select id="job" name="job" class="form-control" style="margin: 3px"> 
+								<option value="blue-collar">blue-collar</option> 
+								<option value="management">management</option>
+								<option value="technician">technician</option>
+								<option value="admin.">admin.</option> 
+								<option value="services">services</option> 
+								<option value="retired">retired</option> 
+								<option value="self-employed">self-employed</option> 
+								<option value="entrepreneur">entrepreneur</option> 
+								<option value="unemployed">unemployed</option> 
+								<option value="housemaid">housemaid</option>
+								<option value="student">student</option>
+							</select>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<label for="education">Education:</label>
+						</td>
+						<td>
+							<select id="education" name="education" class="form-control" style="margin: 3px"> 
+								<option value="primary">primary</option> 
+								<option value="secondary">secondary</option> 
+								<option value="tirtiary">tertiary</option>  
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="marital">Marital Status:</label>
+						</td>
+						<td>
+							<select id="marital" name="marital" class="form-control" style="margin: 3px"> 
+								<option value="divorced">divorced</option> 
+								<option value="married">married</option> 
+								<option value="single">single</option>  
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="default">Defaulted</label> 
+						</td>
+						<td>
+							<select id="default" name="default" class="form-control" style="margin: 3px"> 
+								<option value="yes">yes</option> 
+								<option value="no">no</option> 
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="balance">average yearly balance:</label>
+						</td>
+						<td>
+							<input type="text" id="balance" name="balance" class="form-control" style="margin: 3px" placeholder="in thousands (,000)">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="housing">Housing Loan:</label>
+						</td>
+						<td>
+							<select id="housing" name="housing" class="form-control" style="margin: 3px"> 
+								<option value="no">No</option> 
+								<option value="yes">Yes</option>  
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="loan">Personal Loan:</label>
+						</td>
+						<td>
+							<select id="loan" name="loan" class="form-control" style="margin: 3px"> 
+								<option value="no">No</option> 
+								<option value="yes">Yes</option>  
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="contact">Contact type:</label>
+						</td>
+						<td>
+							<select id="contact" name="contact" class="form-control" style="margin: 3px"> 
+								<option value="cellular">cellular</option> 
+								<option value="telephone">telephone</option>
+								<option value="unknown">unknown</option>  
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="duration">Time spent during contact in seconds:</label>
+						</td>
+						<td>
+							<input type="text" id="duration" name="duration" class="form-control" style="margin: 3px" placeholder="Contact time in seconds">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="day">Day of the month:</label>
+						</td>
+						<td>
+							<input type="text" id="day" name="day" class="form-control" style="margin: 3px" placeholder="Day of the month">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="month">Month:</label> 
+						</td>
+						<td>
+							<select id="month" name="month" class="form-control" style="margin: 3px"> 
+								<option value="jan">january</option> 
+								<option value="feb">february</option>
+								<option value="mar">march</option>
+								<option value="apr">april</option> 
+								<option value="may">may</option> 
+								<option value="jun">june</option> 
+								<option value="jul">july</option> 
+								<option value="aug">august</option> 
+								<option value="sep">september</option> 
+								<option value="oct">october</option>
+								<option value="nov">november</option>
+								<option value="dec">december</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="campaign">Campaign:</label>
+						</td>
+						<td>
+							<input type="text" id="campaign" name="campaign" class="form-control" style="margin: 3px" placeholder="number of contacts performed during this campaign and for this client">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="poutcome">P-Outcome:</label>
+						</td>
+						<td>
+							<select id="poutcome" name="poutcome" class="form-control" style="margin: 3px">
+								<option value="unknown">unknown</option> 
+								<option value="failure">failure</option> 
+								<option value="success">success</option> 
+								<option value="other">Other</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="previous">Previous:</label>
+						</td>
+						<td>
+							<input type="text" id="previous" name="previous" class="form-control" style="margin: 3px" placeholder="Choose between 1 to 55">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="pdays">P-days:</label>
+						</td>
+						<td>
+							<input type="text" id="pdays" name="pdays" class="form-control" style="margin: 3px" placeholder="Choose between 1 to 999">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label></label>
+						</td>
+						<td>
+							<button class="button" type="submit" name="submitBtn" ><span>Submit </span></button>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<br>
+		</form>
+			<br>
+			<br>
+			<h3 style="color: white;>
+				{{predicted_value}}
+			</h3>
+	  </div>
+	</div>
+	</div>
+	</div>
+</body> 
+</html> 
